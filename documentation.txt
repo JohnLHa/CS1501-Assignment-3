@@ -1,0 +1,35 @@
+For my program, I decided to use the built in priority queue API in the Java library. The main reason for this approach
+is because of the ease I would have in implementing the priority queue as a heap with indirection. Of course, I made
+sure that the runtime for the built in priority queue was acceptable beforehand. According to the API, "Implementation
+note: this implementation provides O(log(n)) time for the enqueing and dequeing methods (offer, poll, remove() and add);
+linear time for the remove(Object) and contains(Object) methods; and constant time for the retrieval methods (peek,
+element, and size)."
+
+In the notes, Find should be O(1) and Remove/Insert should be O(logn). I used poll to help with
+logic when searching for price or mileage based on make and model, which is a bit concerning, but it was a sacrifice
+I was willing to make for the logic I did, which was much easier than anything else I could think of. Add() was
+unavoidable since it was the only means to add to the priority queue. In these cases, I merely matched the regular
+runtimes expected of the program. I did opt for the remove(Object) which is a slight degradation in runtime to O(n), but
+it's not too bad asymptotically. For the ease of implementation, it was definitely worth it.
+
+In total, I had 4 possible heaps during the program. There were the two main heaps which would be used throughout the
+program, but there was also the two mirror heaps which were slowly deleted from to find the minimum price or mileage
+according to the model and make.
+
+Here's how I did each interface option:
+1. I asked the user to input a VIN number that would be within the 17 character limit and no O, I and Q restriction.
+Then I uppercased all the letters for ease of use. Then I just asked the user for each aspect of the car, created the
+car object, and added it to both the price and mileage heap.
+2. I ask the user for the VIN number, uppercase it, then create two arrays from the two heaps using the built in
+.toArray() method. I then iterate through the arrays and find the appropriate Car with matching VIN. Finally I changed
+the Car object itself in each heap depending on which part the user wanted to change. I did this for each heap to keep
+the heaps' information the synchronized.
+3.I ask the user for the VIN number, uppercase it, then create just one array to save space. I find the Car object again,
+then use the built in remove method to get rid of it from both heaps.
+4 and 5. I simply just peek at the heaps to find the minimum since they are min heaps.
+6 and 7. I make a copy of the required heap and use the built in poll method to keep removing the minimum whenever the
+make and model do not match according to what the user typed in.
+
+In general, I think the implementation was alright for what I did. It was easy to create and use the methods. The time
+complexities are generally the same and the space complexity is the best I could think of to maintain a good time
+complexity.
