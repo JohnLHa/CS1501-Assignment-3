@@ -5,6 +5,7 @@ CS1501 Tuesday/Thursday
 
 import java.util.Comparator;
 
+//Class to compare mileage of the cars
 public class MileComparator implements Comparator<Car> {
     public int compare(Car x, Car y){
         if(x.getMileage()<y.getMileage()) return -1;
